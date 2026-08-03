@@ -78,16 +78,16 @@ async function initDB() {
   // Seed chambres
   const chambresCount = await db.get('SELECT COUNT(*) as count FROM chambres');
   if (chambresCount.count === 0) {
-    await db.run(`INSERT INTO chambres VALUES (NULL, 'Chambre Double Standard', 45000, 'https://via.placeholder.com/300', 'Lit king-size, AC, WiFi, Écran plat', 1)`);
-    await db.run(`INSERT INTO chambres VALUES (NULL, 'Studio Suite', 60000, 'https://via.placeholder.com/300', 'Salon, Kitchenette, Balcon', 1)`);
-    await db.run(`INSERT INTO chambres VALUES (NULL, 'Suite de Luxe', 80000, 'https://via.placeholder.com/300', 'Grand salon, Jacuzzi, Vue panoramique', 1)`);
+    await db.run(`INSERT INTO chambres VALUES (NULL, 'Chambre Double Standard', 45000, 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500', 'Lit king-size, AC, WiFi, Écran plat', 1)`);
+    await db.run(`INSERT INTO chambres VALUES (NULL, 'Studio Suite', 60000, 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=500', 'Salon, Kitchenette, Balcon', 1)`);
+    await db.run(`INSERT INTO chambres VALUES (NULL, 'Suite de Luxe', 80000, 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500', 'Grand salon, Jacuzzi, Vue panoramique', 1)`);
   }
 
   // Seed services
   const servicesCount = await db.get('SELECT COUNT(*) as count FROM services');
   if (servicesCount.count === 0) {
-    await db.run(`INSERT INTO services VALUES (NULL, 'Cocktail Premium', 'Cocktails maison', 5000, 'bar', 'https://via.placeholder.com/300')`);
-    await db.run(`INSERT INTO services VALUES (NULL, 'Soirée Karaoké', 'Karaoké tous les vendredis', 10000, 'entertainment', 'https://via.placeholder.com/300')`);
+    await db.run(`INSERT INTO services VALUES (NULL, 'Cocktail Premium', 'Cocktails maison', 5000, 'bar', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgQG3j3hJaN4-7JspX_Rds2pDuUDhZx1BGktK_HVDj5Q&s=10')`);
+    await db.run(`INSERT INTO services VALUES (NULL, 'Soirée Karaoké', 'Karaoké tous les vendredis', 10000, 'entertainment', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Y_ldGg1m33WFOYhq4qW8LyYU9HMCp3y1oaoHSU2zKA&s=10')`);
   }
 }
 
