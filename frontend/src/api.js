@@ -1,4 +1,4 @@
-const API = 'http://localhost:5000/api';
+const API = 'https://hotel-project-8yex.onrender.com';
 
 export const getToken = () => localStorage.getItem('token');
 
