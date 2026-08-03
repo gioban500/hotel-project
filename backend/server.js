@@ -169,19 +169,6 @@ app.get('/api/services', async (req, res) => {
 app.post('/api/services', authMiddleware, async (req, res) => {
   const { id, nom, description, prix, categorie, image } = req.body;
   
-  if (id) {
-    await db.run('UPDATE services SET nom=?, description=?, prix=?, categorie=?, image=? WHERE id=?', 
-      [nom, description, prix, categorie, image, id]);
-  } else {
-    await db.run('INSERT INTO services VALUES (NULL, ?, ?, ?, ?, ?)', 
-      [nom, description, prix, categorie, image]);
-  }
-  res.json({ ok: true });
-});
-
-app.post('/api/services', authMiddleware, async (req, res) => {
-  const { id, nom, description, prix, categorie, image } = req.body;
-  
   if (!nom) {
     return res.status(400).json({ error: 'Nom requis' });
   }
@@ -195,7 +182,6 @@ app.post('/api/services', authMiddleware, async (req, res) => {
   }
   res.json({ ok: true });
 });
-
 // DELETE service
 app.delete('/api/services/:id', authMiddleware, async (req, res) => {
   await db.run('DELETE FROM services WHERE id=?', req.params.id);
