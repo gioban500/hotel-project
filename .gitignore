@@ -1,0 +1,16 @@
+node_modules/
+.env
+*.db
+# Ignorer tous les dossiers node_modules, peu importe où ils se trouvent
+**/node_modules/
+
+# Ignorer tous les fichiers .env
+**/.env
+.env
+
+# Ignorer les bases de données
+*.db
+
+# Ignorer les fichiers de build/dist
+**/dist/
+**/build/
