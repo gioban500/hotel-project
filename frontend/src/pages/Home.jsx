@@ -98,7 +98,7 @@ export default function Home() {
       <h3 className="text-white text-base font-semibold mb-2"> Une demande particulière ou un événement ?</h3>
       <p className="text-gray-400 mb-4">Pour toute réservation personnalisée (groupes, séjours de longue durée, formules spéciales), notre équipe est à votre écoute.</p>
       <a 
-        href="https://wa.me/22893222929?text=Bonjour%20je%20souhaite%20en%20savoir%20plus%20pour%20une%20r%C3%A9servation%20sur%20mesure" 
+        href="https://wa.me/22898795276?text=Bonjour%20je%20souhaite%20en%20savoir%20plus%20pour%20une%20r%C3%A9servation%20sur%20mesure" 
         target="_blank" 
         rel="noopener noreferrer" 
         className="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded font-medium inline-block transition-colors"
