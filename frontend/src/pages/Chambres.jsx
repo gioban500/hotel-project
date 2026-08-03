@@ -13,12 +13,17 @@ export default function Chambres() {
     })
   }, [])
 
+  const handleSelectRoom = (roomId) => {
+    localStorage.setItem('selectedRoomId', roomId)
+    window.location.href = '/#reservation'
+  }
+
   if (loading) return <div className="text-center py-8">Chargement...</div>
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold text-center mb-12">Toutes nos Chambres</h1>
-      <RoomGrid chambres={chambres} />
+      <RoomGrid chambres={chambres} onSelectRoom={handleSelectRoom} />
     </div>
   )
 }

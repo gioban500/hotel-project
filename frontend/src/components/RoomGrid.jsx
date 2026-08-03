@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
@@ -21,8 +20,6 @@ export default function RoomGrid({ chambres, onSelectRoom }) {
       transition: { duration: 0.5 }
     }
   }
-  
-  const [selectedRoomId, setSelectedRoomId] = useState(null)
 
   return (
     <motion.div 
@@ -45,13 +42,17 @@ export default function RoomGrid({ chambres, onSelectRoom }) {
             <p className="text-gray-600 text-sm mb-4">{chambre.amenities}</p>
             <div className="flex justify-between items-center font-bold text-slate-900">
               <span>{chambre.prix.toLocaleString()} F CFA</span>
-              <Link 
-                to="/#reservation" 
-                onClick={() => onSelectRoom && onSelectRoom(chambre.id)}
-                className="bg-amber-500 text-slate-900 px-4 py-2 rounded hover:bg-amber-400 text-sm font-semibold"
-              >
-                Réserver
-              </Link>
+              <button 
+  type="button"
+  onClick={(e) => {
+    e.preventDefault()
+    console.log('Chambre selectionnée:', chambre.id)
+    if (onSelectRoom) onSelectRoom(chambre.id)
+  }}
+  className="bg-amber-500 text-slate-900 px-4 py-2 rounded hover:bg-amber-400 text-sm font-semibold"
+>
+  Réserver
+</button>
             </div>
           </div>
         </motion.div>

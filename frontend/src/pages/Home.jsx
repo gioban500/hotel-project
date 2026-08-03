@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
 import RoomGrid from '../components/RoomGrid'
@@ -11,6 +11,15 @@ export default function Home() {
   const [services, setServices] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedRoomId, setSelectedRoomId] = useState(null)
+  const reservationRef = useRef(null)
+
+  useEffect(() => {
+  const roomId = localStorage.getItem('selectedRoomId')
+  if (roomId) {
+    setSelectedRoomId(parseInt(roomId))
+    localStorage.removeItem('selectedRoomId')
+  }
+}, [])
 
   useEffect(() => {
     Promise.all([getChambres(), getServices()]).then(([c, s]) => {
@@ -20,6 +29,13 @@ export default function Home() {
     })
   }, [])
 
+  const handleSelectRoom = (roomId) => {
+    setSelectedRoomId(roomId)
+    setTimeout(() => {
+      reservationRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }, 100)
+  }
+
   if (loading) return <div className="text-center py-8">Chargement...</div>
 
   return (
@@ -27,13 +43,13 @@ export default function Home() {
       <Hero />
       
       {/* CHAMBRES */}
-      <section className="py-16 max-w-6xl mx-auto px-4">
-        <div className="flex justify-between items-center mb-12">
-          <h3 className="text-3xl font-bold">Nos Chambres & Suites</h3>
-          <Link to="/chambres" className="text-amber-600 hover:underline font-semibold">Voir toutes →</Link>
-        </div>
-        <RoomGrid chambres={chambres.slice(0, 3)} />
-      </section>
+<section className="py-16 max-w-6xl mx-auto px-4">
+  <div className="flex justify-between items-center mb-12">
+    <h3 className="text-3xl font-bold">Nos Chambres & Suites</h3>
+    <Link to="/chambres" className="text-amber-600 hover:underline font-semibold">Voir toutes →</Link>
+  </div>
+  <RoomGrid chambres={chambres.slice(0, 3)} onSelectRoom={handleSelectRoom} />
+</section>
 
       {/* SERVICES */}
       <section className="bg-slate-900 text-white py-16 px-4">
@@ -68,12 +84,12 @@ export default function Home() {
       </section>
 
       {/* RESERVATION */}
-      <section id="reservation" className="py-16 px-4">
+      <section id="reservation" ref={reservationRef} className="py-16 px-4">
         <h3 className="text-3xl font-bold text-center mb-8">Demande de Réservation</h3>
-        <ReservationForm chambres={chambres} />
+        <ReservationForm chambres={chambres} selectedRoomId={selectedRoomId} />
       </section>
 
-      {/* FOOTER */}
+       {/* FOOTER */}
       <footer className="bg-slate-900 text-gray-400 py-12 text-center text-sm border-t border-slate-800">
   <div className="max-w-6xl mx-auto px-4">
     
